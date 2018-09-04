@@ -1,0 +1,16 @@
+site:
+  protocol: https
+  host: openweathermap.org
+
+site_api:
+  protocol: http
+  host: api.openweathermap.org
+  key: 2ab106523eb046092f91d4c4c22af3f1
+
+city:
+  name:
+  code:
+  country:
+  coordinates:
+    latitude:
+    longitude:

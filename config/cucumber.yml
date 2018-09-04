@@ -1,0 +1,3 @@
+<% common = "--format pretty -r features/support/env.rb -r features/step_definitions" %>
+default: <%= common %> -r features/WEATHER CONFIG=weather.yaml CLEAR_OPTS=log PROJECT=WEATHER
+WEATHER: <%= common %> -r features/WEATHER CONFIG=weather.yaml CLEAR_OPTS=log PROJECT=WEATHER
