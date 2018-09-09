@@ -6,14 +6,11 @@ And /^I get basic city info for (.+) via API$/ do |city_name|
   $site_manager.process_basic_info(city_name)
 end
 
-And /^I get current weather for (.+) via API$/ do |city_name|
-  $site_manager.process_weather_info(city_name)
+And /^I check that (API|UI) weather data for (.+) is valid$/ do |source, city_name|
+  raise "#{city_name} weather data is invalid!" unless $site_manager.city(city_name).weather_info_is_valid?(source.downcase.to_sym)
 end
 
-And /^I check that weather data for (.+) is valid$/ do |city_name|
-  raise "#{city_name} weather data is invalid!" unless $site_manager.city(city_name).weather_info_is_valid?
-end
-
-And /^I get current weather for (.+) via UI$/ do |city_name|
-# TODO: implement step functionality
+And /^I get current weather for (.+) via (API|UI)$/ do |city_name, source|
+  $site_manager.process_weather_info(city_name, source.downcase.to_sym)
+  a = 0
 end

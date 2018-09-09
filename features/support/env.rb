@@ -76,6 +76,5 @@ end
 TEST_DATE = Time.now.strftime('%Y-%m-%d-%H-%M-%S')
 LOG_PATH =  Dir.pwd + "/results/errors/#{TEST_DATE}"
 
-require "#{ENV['PROJECT'].downcase}_env.rb"
 require 'hooks.rb'
 

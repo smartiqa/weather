@@ -1,7 +1,6 @@
-class HttpApi < Http
+class HttpApiHelper < Http
 
   BASIC_URI            = '/data/2.5'
-
 
   REQUEST_RETRY_COUNT = 4
   REQUEST_RETRY_INTERVAL = 15
@@ -15,10 +14,6 @@ class HttpApi < Http
 
   def info(city)
     send_request('GET', "#{BASIC_URI}/weather", q: city, APPID: @key)
-  end
-
-  def forecast
-  # TODO: implement forecast info retrieving
   end
 
 end

@@ -5,7 +5,8 @@ class SiteManager
   def initialize(site, site_api)
     @host = site['host']
     @protocol = site['protocol']
-    @api = HttpApi.new(site_api['host'], site_api['protocol'], site_api['key'])
+    @api = HttpApiHelper.new(site_api['host'], site_api['protocol'], site_api['key'])
+    @ui = UIHelper.new(@host, @protocol)
     @cities = {}
   end
 
@@ -13,17 +14,17 @@ class SiteManager
     Http.new(@host, @protocol).send_request('GET', '')
   end
 
+  def process_basic_info(city_name)
+    city(city_name).basic_info
+  end
+
+  def process_weather_info(city_name, source)
+    city(city_name).current_weather(source)
+  end
+
   def city(city_name)
-    @cities[city_name]
+    @cities[city_name] ||= City.new(city_name, @api, @ui)
   end
 
-  def process_basic_info(city)
-    @cities[city] = City.new(@api, @api.info(city))
-  end
-
-  def process_weather_info(city)
-    process_basic_info(city) unless @cities[city]
-    @cities[city].current_weather
-  end
 
 end
