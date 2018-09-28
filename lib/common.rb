@@ -1,4 +1,4 @@
-class Common
+sfsdclass Common
 
   def self.valid_json?(json)
     JSON.parse(json)
