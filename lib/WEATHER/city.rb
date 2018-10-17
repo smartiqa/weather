@@ -19,7 +19,7 @@ class City
   end
 
   def current_weather(source)
-    @current_weather[source] = Weather.new(source == :api ? @api.info(@name) : @ui.info(@name), source)
+    @current_weather[source] = source == :api ? APIWeather.new(@api.info(@name)) : UIWeather.new(@ui.info(@name))
   end
 
   def weather_info_is_valid?(source)
