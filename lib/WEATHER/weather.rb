@@ -1,5 +1,7 @@
 class Weather
 
+  attr_reader :temperature, :pressure, :humidity, :wind
+
   RANGES = {
       main: %w(Clear Clouds Rain Mist Haze Snow Extreme),
       temperature: (-80..70),

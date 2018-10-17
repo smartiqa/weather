@@ -14,3 +14,8 @@ And /^I get current weather for (.+) via (API|UI)$/ do |city_name, source|
   $site_manager.process_weather_info(city_name, source.downcase.to_sym)
   a = 0
 end
+
+And /^API and UI weather info for (.+) matches$/ do |city_name|
+  raise "API and UI #{city_name} weather data does't match!" unless $site_manager.weather_info_matches?(city_name)
+  a = 0
+end
