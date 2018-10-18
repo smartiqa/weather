@@ -1,16 +1,16 @@
 @skip_if_failed @smoke
-Feature: Weather site check
+Feature: Smoke Weather site check
 
-  Scenario: Check Weather site availability
+  Background:
     Given Weather site is accessible
-    Then I get basic city info for Cupertino via API
+      And basic city info for Cupertino retrieved via API
 
   @api
   Scenario: Check site functionality via HTTP API
-    Given I get current weather for Cupertino via API
-    Then I check that API weather data for Cupertino is valid
+    When current weather info for Cupertino is collected via API
+    Then API weather data validation for Cupertino is successful
 
   @ui
   Scenario: Check site functionality via UI
-    Given I get current weather for Cupertino via UI
-    Then I check that UI weather data for Cupertino is valid
+    When current weather info for Cupertino is collected via UI
+    Then UI weather data validation for Cupertino is successful

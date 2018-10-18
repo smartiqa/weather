@@ -1,5 +1,7 @@
 class City
 
+  attr_accessor :current_weather
+
   def initialize(name, api, ui)
     @name = name
     @api = api
@@ -18,7 +20,7 @@ class City
     @coordinates = data['coord']
   end
 
-  def current_weather(source)
+  def update_current_weather(source)
     @current_weather[source] = source == :api ? APIWeather.new(@api.info(@name)) : UIWeather.new(@ui.info(@name))
   end
 
