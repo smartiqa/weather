@@ -22,6 +22,13 @@ class SiteManager
     city(city_name).current_weather(source)
   end
 
+  def weather_info_matches?(city_name)
+    api = city(city_name).current_weather(:api)
+    ui = city(city_name).current_weather(:ui)
+    api.temperature == ui.temperature && api.pressure == ui.pressure &&
+    api.humidity == ui.humidity && api.wind == ui.wind
+  end
+
   def city(city_name)
     @cities[city_name] ||= City.new(city_name, @api, @ui)
   end
