@@ -19,12 +19,12 @@ class SiteManager
   end
 
   def process_weather_info(city_name, source)
-    city(city_name).current_weather(source)
+    city(city_name).update_current_weather(source)
   end
 
   def weather_info_matches?(city_name)
-    api = city(city_name).current_weather(:api)
-    ui = city(city_name).current_weather(:ui)
+    api = city(city_name).current_weather[:api]
+    ui = city(city_name).current_weather[:ui]
     api.temperature == ui.temperature && api.pressure == ui.pressure &&
     api.humidity == ui.humidity && api.wind == ui.wind
   end
