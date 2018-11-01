@@ -11,7 +11,7 @@ class SeleniumDriver
 
   def initialize(host)
     @driver = Selenium::WebDriver.for DEFAULT_BROWSER
-    @driver.manage.timeouts.implicit_wait = 30 # seconds
+    @driver.manage.timeouts.implicit_wait = 60 # seconds
     @driver.navigate.to host
   end
 
