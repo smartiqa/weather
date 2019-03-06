@@ -1,3 +1,5 @@
+# functional regression test
+
 @skip_if_failed @smoke
 Feature: Smoke Weather site check
 
