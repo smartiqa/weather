@@ -1,6 +1,5 @@
 # functional regression test
-  
-@skip_if_failed @functional
+@quit_if_failed @functional
 Feature: Functional Weather site check
 
   Background:

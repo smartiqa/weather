@@ -1,12 +1,3 @@
-require 'selenium/webdriver'
-#require 'require_all'
-
-Before do |scenario|
-  $log.debug "###################### Scenario #{scenario.name} ######################"
+After('@quit_if_failed') do |scenario|
+  Cucumber.wants_to_quit = true if scenario.failed?
 end
-
-at_exit do
-  $common = nil
-end
-
-require_rel "./#{ENV['PROJECT'].downcase}_hooks.rb"
