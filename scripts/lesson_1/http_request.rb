@@ -23,14 +23,6 @@ module Lesson1
           when 'POST'
             request = Net::HTTP::Post.new(uri, @headers)
             request.body = data.to_json
-          when 'PUT'
-            request = Net::HTTP::Put.new(uri, @headers)
-            request.body = data.to_json
-          when 'PATCH'
-            request = Net::HTTP::Patch.new(uri, @headers)
-            request.body = data.to_json
-          when 'DELETE'
-            request = Net::HTTP::Delete.new(uri, @headers)
           else
             raise "Request type is not defined! Provided type: #{method}"
         end
@@ -62,7 +54,4 @@ http = Lesson1::Http.new('httpbin.org', 'https')
 puts "Sending HTTP requests to #{http.base_url}..."
 http.send_request('GET', '/get')
 http.send_request('POST', '/post', nil, {test_key: 'test_value'})
-http.send_request('PUT', '/put', nil, {test_key: 'test_value'})
-http.send_request('PATCH', '/patch', nil, {test_key: 'test_value'})
-http.send_request('DELETE', '/delete')
 puts "HTTP requests to #{http.base_url} are successful!"

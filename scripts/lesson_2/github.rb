@@ -3,7 +3,7 @@ require './http_request.rb'
 TEST_USER = 'smartiqa-test'
 # GitHub restricts pushing Authentication Token to public repo
 # That's why it's necessary to update it with valid token before running
-# AUTH_TOKEN = '<Please change me for b4a1d07f32....c5ca8594f>'
+AUTH_TOKEN = '<Please change me for b4a1d07f32....c5ca8594f>'
 TEST_REPO = 'test_repository_2'
 TEST_ISSUE_NUM = 3
 TEST_COMMIT_SHA = '063b6dde79957b9f34a0a5f74f4febe0e34cbba5'
@@ -94,32 +94,6 @@ module Lesson2
 
   end
 
-  class Repository
-
-    def initialize
-      @api = API.new
-    end
-
-    # ------- Work with Branches -------------
-    def list_branches(owner, repo)
-      @api.call('GET', "/repos/#{owner}/#{repo}/branches")
-    end
-
-    # ------- Work with Commits --------------
-    def list_commits(owner, repo, branch='master')
-      @api.call('GET', "/repos/#{owner}/#{repo}/commits", json={sha: branch})
-    end
-
-    def get_commit(owner, repo, commit_sha)
-      @api.call('GET', "/repos/#{owner}/#{repo}/commits/#{commit_sha}")
-    end
-
-    def get_commit_author(owner, repo, commit_sha)
-      get_commit(owner, repo, commit_sha)['author']
-    end
-
-  end
-
 end
 
 # Check GitHub User API functionality
@@ -136,10 +110,3 @@ issue.list_for_repository(TEST_USER, TEST_REPO)
 issue.get(TEST_USER, TEST_REPO, TEST_ISSUE_NUM)
 issue.edit_title(TEST_USER, TEST_REPO, TEST_ISSUE_NUM, 'Smartiqa Test issue 3')
 issue.edit_body(TEST_USER, TEST_REPO, TEST_ISSUE_NUM, 'Smartiqa Test body 3')
-
-# Check GitHub Repository API functionality
-repo = Lesson2::Repository.new
-repo.list_branches(TEST_USER, TEST_REPO)
-repo.list_commits(TEST_USER, TEST_REPO)
-repo.get_commit(TEST_USER, TEST_REPO, TEST_COMMIT_SHA)
-repo.get_commit_author(TEST_USER, TEST_REPO, TEST_COMMIT_SHA)
